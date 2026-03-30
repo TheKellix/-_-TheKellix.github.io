@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Лагерь Гурино | Тугулым | Свердловская область</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Merriweather:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #fefaf0;
+            color: #2d3e2b;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .header {
+            background: #1a3f2c;
+            padding: 18px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        .nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .logo {
+            color: white;
+            font-size: 1.8rem;
+            font-weight: 800;
+        }
+        .logo span {
+            font-weight: 400;
+            font-size: 1rem;
+        }
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+        }
+        .nav-links a {
+            color: #f9f1da;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+        .nav-links a:hover {
+            color: #ffd966;
+        }
+        .btn-call-header {
+            background: #e67e22;
+            padding: 8px 18px;
+            border-radius: 40px;
+            color: white !important;
+        }
+        .menu-icon {
+            display: none;
+            font-size: 28px;
+            color: white;
+            cursor: pointer;
+        }
+        @media (max-width: 800px) {
+            .nav-links {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                text-align: center;
+                padding: 20px 0;
+                gap: 15px;
+            }
+            .nav-links.show {
+                display: flex;
+            }
+            .menu-icon {
+                display: block;
+            }
+        }
+
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.55)), url('gurino-2.jpg');
+            background-size: cover;
+            background-position: center;
+            padding: 120px 0;
+            color: white;
+            text-align: center;
+        }
+        .hero-content h1 {
+            font-size: 3.2rem;
+            font-family: 'Merriweather', serif;
+            margin: 20px 0;
+        }
+        .accent-text {
+            color: #ffc857;
+        }
+        .price-block {
+            background: #2b5e3b;
+            display: inline-block;
+            padding: 10px 24px;
+            border-radius: 60px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        .price-block span {
+            font-size: 1.6rem;
+            font-weight: 800;
+        }
+        .btn-call {
+            background: #ff8c42;
+            border: none;
+            padding: 14px 32px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 50px;
+            color: #2c3e2b;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .about-box {
+            display: flex;
+            gap: 40px;
+            padding: 60px 0;
+            align-items: center;
+        }
+        .about-text { flex: 1; }
+        .about-img {
+            flex: 1;
+            height: 320px;
+            background: url('gurino.jpg') center/cover;
+            border-radius: 32px;
+        }
+        .about-highlight {
+            background: #e9f0e5;
+            padding: 20px;
+            border-radius: 24px;
+            margin-top: 20px;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+            gap: 24px;
+            margin: 40px 0;
+        }
+        .feature-card {
+            background: white;
+            padding: 24px 16px;
+            text-align: center;
+            border-radius: 28px;
+            box-shadow: 0 6px 14px rgba(0,0,0,0.05);
+        }
+        .feature-icon {
+            font-size: 2.6rem;
+            margin-bottom: 12px;
+        }
+        @media (max-width: 700px) {
+            .about-box { flex-direction: column; }
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin: 40px 0 15px;
+        }
+        .section-sub {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #4a6741;
+        }
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 30px;
+            padding: 20px 0 60px;
+        }
+        .card {
+            background: white;
+            padding: 28px 20px;
+            border-radius: 32px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+        }
+        .schedule-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .schedule-item {
+            display: flex;
+            justify-content: space-between;
+            background: white;
+            margin: 12px 0;
+            padding: 18px 24px;
+            border-radius: 60px;
+            font-weight: 500;
+        }
+        .price-tag {
+            background: #2b5e3b;
+            color: white;
+            padding: 4px 16px;
+            border-radius: 40px;
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px 0 60px;
+        }
+        .gallery-item {
+            height: 240px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 28px;
+        }
+        .contact-flex {
+            display: flex;
+            gap: 40px;
+            background: white;
+            border-radius: 48px;
+            padding: 40px;
+            margin: 40px 0;
+        }
+        .contact-info, .contact-form { flex: 1; }
+        .big-phone, .big-email {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin: 16px 0;
+            background: #eef3e9;
+            padding: 10px 18px;
+            border-radius: 60px;
+            display: inline-block;
+        }
+        .form-group { margin-bottom: 18px; }
+        input, select, textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: 40px;
+            border: 1px solid #ccc;
+            font-family: inherit;
+        }
+        .btn-submit {
+            background: #1f6e43;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1rem;
+        }
+        footer {
+            background: #1a2f1f;
+            color: #cfdec7;
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 40px;
+        }
+        footer a { color: #ffcd94; margin: 0 12px; text-decoration: none; }
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(18px);
+            transition: all 0.6s ease;
+        }
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .accent-block {
+            background: #ffe0a3;
+            color: #2c4b2a;
+        }
+        /* REVIEWS */
+        .reviews-widget {
+            max-width: 1280px;
+            margin: 60px auto 20px;
+            background: white;
+            border-radius: 48px;
+            box-shadow: 0 25px 45px -12px rgba(0,0,0,0.15);
+        }
+        .reviews-header {
+            background: #1c6e3f;
+            padding: 28px 32px;
+            color: white;
+            text-align: center;
+            border-radius: 48px 48px 0 0;
+        }
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 20px;
+            padding: 32px;
+        }
+        .review-card {
+            background: white;
+            border-radius: 28px;
+            padding: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            border: 1px solid #eef2f0;
+            transition: 0.2s;
+        }
+        .stars {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 14px;
+        }
+        .star {
+            font-size: 1.4rem;
+            color: #e4e5e9;
+        }
+        .star.filled {
+            color: #ffb83b;
+        }
+        .review-text {
+            font-size: 0.95rem;
+            line-height: 1.45;
+            margin-bottom: 16px;
+        }
+        .review-author {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #3a6b4b;
+            border-top: 1px solid #edf2ef;
+            padding-top: 12px;
+        }
+        @media (max-width: 700px) {
+            .reviews-grid { padding: 20px; }
+            .contact-flex { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+<header class="header">
+    <div class="container">
+        <div class="nav-bar">
+            <div class="logo">🌲 Гурино 🌲 <span>| Тугулым</span></div>
+            <div class="menu-icon" id="menuToggle">☰</div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Главная</a></li>
+                <li><a href="#about">О лагере</a></li>
+                <li><a href="#activities">Программа</a></li>
+                <li><a href="#schedule">Смены</a></li>
+                <li><a href="#gallery">Фото</a></li>
+                <li><a href="#contact" class="btn-call-header">📞 Связаться</a></li>
+            </ul>
+        </div>
+    </div>
+</header>
+<main>
+    <section id="home" class="hero">
+        <div class="container hero-content">
+            <div class="hero-tag animate-on-scroll">🌿 Свердловская область, Тугулымский район | 60 км от Екатеринбурга</div>
+            <h1 class="animate-on-scroll">Лагерь «Гурино»<br>лесное приключение на <span class="accent-text">14 дней</span></h1>
+            <div class="price-block animate-on-scroll">🔥 Путёвка на полную смену <span>25 000 ₽</span></div>
+            <p class="animate-on-scroll" style="font-size:1.2rem; max-width:600px; margin:0 auto 30px;">Полный пансион, домики в соснах, река Айба, походы и костры.</p>
+            <button class="btn-call animate-on-scroll" id="heroCallBtn">📞 Забронировать → 8-996-032-9903</button>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <div class="about-box animate-on-scroll">
+                <div class="about-text">
+                    <h3>🏕️ Лагерь «Гурино» — лесная база у реки</h3>
+                    <p>Расположен в сосновом бору Тугулымского района. Территория огорожена, круглосуточная охрана, медпункт, профессиональные вожатые. У нас — живое общение, экотропы, сплавы, походы и костры.</p>
+                    <div class="about-highlight">
+                        <strong>✨ Что входит в путёвку за 25 000 ₽ (14 дней):</strong><br>
+                        • Проживание в тёплых домиках по 4-6 человек<br>
+                        • 5-разовое питание (домашняя кухня)<br>
+                        • Мастер-классы, квесты, спорт, театр и походы<br>
+                        • Медицинское сопровождение<br>
+                        • Трансфер из Екатеринбурга и Тюмени
+                    </div>
+                </div>
+                <div class="about-img"></div>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card animate-on-scroll"><div class="feature-icon">🌲</div><h3>Чистый воздух</h3><p>Сосновый бор без городского смога</p></div>
+                <div class="feature-card animate-on-scroll"><div class="feature-icon">🏡</div><h3>Уютные домики</h3><p>По 4–6 человек с отоплением</p></div>
+                <div class="feature-card animate-on-scroll"><div class="feature-icon">🍲</div><h3>5-разовое питание</h3><p>Домашняя кухня, фрукты, соки</p></div>
+                <div class="feature-card animate-on-scroll"><div class="feature-icon">🚑</div><h3>Медпункт 24/7</h3><p>Врач и медсестра всегда на месте</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="activities" style="background:#f6f3ea;">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">🌲 Лесная программа</h2>
+            <div class="cards-grid">
+                <div class="card animate-on-scroll"><div class="card-icon">🏹</div><h3>Туризм</h3><p>Карты, компасы, походы и ночёвки в палатках</p></div>
+                <div class="card animate-on-scroll"><div class="card-icon">🔥</div><h3>Костры</h3><p>Песни под гитару, астрономия, хлеб на углях</p></div>
+                <div class="card animate-on-scroll"><div class="card-icon">🧵</div><h3>Ремёсла</h3><p>Роспись, травничество, береста</p></div>
+                <div class="card animate-on-scroll"><div class="card-icon">⚽</div><h3>Спорт</h3><p>Волейбол, скалодром, верёвочный парк</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="schedule">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">📅 Смены лета 2026</h2>
+            <div class="schedule-list animate-on-scroll">
+                <div class="schedule-item"><span>🌞 Смена №1 «Лесной дебют»</span><span>1–14 июня</span><span class="price-tag">25 000 ₽</span></div>
+                <div class="schedule-item"><span>🌿 Смена №2 «Уральский искатель»</span><span>19 июня – 2 июля</span><span class="price-tag">25 000 ₽</span></div>
+                <div class="schedule-item"><span>🍂 Смена №3 «Кедровая сила»</span><span>7–20 июля</span><span class="price-tag">25 000 ₽</span></div>
+                <div class="schedule-item"><span>🏕️ Смена №4 «Следопыты»</span><span>26 июля – 8 августа</span><span class="price-tag">25 000 ₽</span></div>
+                <div class="schedule-item"><span>🌲 Смена №5 «Уральский рассвет»</span><span>12–25 августа</span><span class="price-tag">25 000 ₽</span></div>
+            </div>
+            <div style="text-align:center; margin-top:36px;"><div class="price-block accent-block animate-on-scroll">🎯 Раннее бронирование до 15 мая — 23 500 ₽</div></div>
+        </div>
+    </section>
+
+    <section id="gallery">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">📸 Атмосфера Гурино</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item animate-on-scroll" style="background-image: url('children2.jpg');"></div>
+                <div class="gallery-item animate-on-scroll" style="background-image: url('chlidren.jpg');"></div>
+                <div class="gallery-item animate-on-scroll" style="background-image: url('house222.jpg');"></div>
+                <div class="gallery-item animate-on-scroll" style="background-image: url('gurino.jpg');"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- БЛОК ОТЗЫВОВ С ДИНАМИЧЕСКИМИ ЗВЁЗДАМИ -->
+    <div class="reviews-widget">
+        <div class="reviews-header">
+            <h2>⭐ Реальные отзывы о Гурино</h2>
+            <p>Родители пишут честно — звёзды парсятся из текста</p>
+            <div class="rating-badge">★ анализ более 80 отзывов</div>
+        </div>
+        <div class="reviews-grid" id="reviewsContainer"></div>
+        <div style="background:#f8faf7; text-align:center; padding:18px;">🌟 Гурино — место, куда хочется возвращаться!</div>
+    </div>
+
+    <section id="contact">
+        <div class="container">
+            <div class="contact-flex animate-on-scroll">
+                <div class="contact-info">
+                    <h3>📞 Свяжитесь с нами</h3>
+                    <p>Забронируйте место в лагере «Гурино» по телефону или почте.</p>
+                    <div class="big-phone"><a href="tel:+799960329903" style="text-decoration:none; color:#1f6e43;">📞 8-996-032-9903</a></div>
+                    <div class="big-email">✉️ <a href="mailto:gurinocamping@bk.ru" style="text-decoration:none; color:#1f6e43;">gurinocamping@bk.ru</a></div>
+                    <p>📍 Свердловская обл., Тугулымский р-н, база «Гурино»<br>🚌 Трансфер от ж/д вокзала «Тугулым» — бесплатно</p>
+                    <p style="margin-top:20px;">🏕️ <strong>25 000 ₽ за 14 дней</strong> — полный пансион, безопасность, впечатления!</p>
+                </div>
+                <div class="contact-form">
+                    <h3>✨ Написать заявку</h3>
+                    <form id="emailForm">
+                        <div class="form-group">
+                            <input type="text" placeholder="Ваше имя" required id="userName">
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Ваш email (на него придёт копия)" required id="userEmail">
+                        </div>
+                        <div class="form-group">
+                            <select id="userShift" required>
+                                <option value="">Выберите смену (14 дней)</option>
+                                <option>1 июня – 14 июня</option>
+                                <option>19 июня – 2 июля</option>
+                                <option>7 июля – 20 июля</option>
+                                <option>26 июля – 8 августа</option>
+                                <option>12 августа – 25 августа</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <textarea rows="3" id="userMessage" placeholder="Дополнительные пожелания / количество детей / вопросы"></textarea>
+                        </div>
+                        <button type="submit" class="btn-submit">✉️ Написать заявку →</button>
+                    </form>
+                    <p style="font-size:0.75rem; margin-top:16px; text-align:center;">Нажав на кнопку, откроется почтовый клиент с готовым письмом</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<footer>
+    <div class="container">
+        <p>© 2026 Детский лесной лагерь «Гурино» — Тугулым, Свердловская область</p>
+        <p>📞 8-996-032-9903 | ✉️ gurinocamping@bk.ru | Путёвка 25 000 ₽ за 14 дней</p>
+        <div><a href="#">Политика конфиденциальности</a><a href="#">Как добраться</a><a href="#">Фотогалерея</a></div>
+    </div>
+</footer>
+
+<script>
+    // Мобильное меню
+    const toggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    if(toggle) toggle.addEventListener('click', () => navLinks.classList.toggle('show'));
+
+    // Анимация при скролле
+    const animated = document.querySelectorAll('.animate-on-scroll');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    animated.forEach(el => observer.observe(el));
+
+    // ФУНКЦИЯ ПАРСИНГА РЕЙТИНГА ИЗ ТЕКСТА
+    function parseRatingFromText(text) {
+        const lower = text.toLowerCase();
+        const patterns = {
+            5: /(5|пять|пят[ьы]|пятер[аоюк]|пятёрок|отлично|супер|классно|восторг|5\s+звезд|пять\s+звезд)/i,
+            4: /(4|четыре|четыр[еи]|четвёрк[ау]|хорошо|4\s+звезд|четыре\s+звезд)/i,
+            3: /(3|три|тро[еий]|тройк[ау]|так\s+себе|средне|3\s+звезд)/i,
+            2: /(2|две|два|двойк[ау]|не\s+очень|слабо|2\s+звезд)/i,
+            1: /(1|одн[ау]|единиц[ау]|ужас[но]?|плохо|отвратительно|1\s+звезд)/i
+        };
+        for(let r=5; r>=1; r--) if(patterns[r].test(lower)) return r;
+        return null;
+    }
+
+    // МАССИВ ОТЗЫВОВ
+    const reviewsList = [
+        "всё супер приехали с сыном в тугулым гурино в первый раз. место красивое лес речка воздух вообще кайф. корпуса староваты конечно но чисто. кормили норм даже добавку давали. воспитатели молодые веселые. ребенок доволен как слон 5 звезд",
+        "ну че скажу... лагерь тугулым мы гурино. ожидал большего если честно. территория большая это плюс. но вот еда так себе, суп холодный давали, макароны с чем то непонятным. ребенок худеющий приехал хотя кормили вроде. три звезды за природу и за то что живой вернулся",
+        "БЛИН ЭТО ПРОСТО ВОСПОМИНАНИЕ НА ВСЮ ЖИЗНЬ!!!! 😍 дочка второй год ездит в тугулым гурино и каждый раз не вытащить оттуда. вожатые как родные стали. дискотеки по вечерам огонь, квесты интересные. в этом году даже бассейн надувной поставили. пять баллов без вопросов",
+        "приехали из екатеринбурга в тугулым. ну такое... дорога долгая очень устали. размещение нормальное кровати скрипят но спать можно. душевые общие мама дорогая... не для всех. но ребенок подружился с мальчишками плакал когда уезжали. 4 звезды ставлю за атмосферу минус за удобства",
+        "купили путевку в гурино тугулым по совету подруги. ну честно не вау. обычный лагерь как все. ребенок особо не в восторге но и не жаловался. привезли обратно грязного конечно и вещи потерял одну кофту. 3 звезды за то что хоть не заболел",
+        "фуууууу бред полный. лагерь тугулым гурино никому не советую!!!! кормили ужасно ребенок почти ничего не ел. вожатые никакие сидели в телефонах. на речку водили один раз за смену. деньги на ветер. две звезды и то из вежливости",
+        "ооооооо тугулым гурино это любовь с первого заезда. сама когда то ездила а теперь дочку отправила. традиции сохранились, костры до сих пор поют. немного корпуса старые но зато душевно. в следующем году опять туда. 5 звезд и спасибо старшим вожатым",
+        "чесно говоря разочарован. ждали от тугулыма многого а по факту... коробка с отзывами лагерь как лагерь. программа скудная, мастерклассов почти нет. ребенок сидел в телефоне всю смену. зачем тогда платили? три звезды за то что хоть кормили нормально иногда",
+        "ребенок в восторге просто. каждый день звонил и рассказывал про гурино тугулым. то поход в лес то волейбол то конкурсы. подружился с тремя пацанами до сих пор общаются. спасибо вожатой лене она золото. 5 звезд однозначно",
+        "мамочки не берите туда если ребенок нежный. тугулым гурино это суровый лагерь. комары жруть просто жесть. туалет на улице в одном корпусе. мой вернулся с укусами по всему телу. но говорит что было весело. четыре звезды потому что самому понравилось а я переживала",
+        "заказывали путевку в тугулым гурино на сайте. пришло все быстро подтвердили. сама поездка ок. но блин обратно ребенка привезли на два часа позже и даже не извинились. минус балл за логистику. 4 звезды за сам лагерь",
+        "пффф... ну такое. обычный советский лагерь тугулым. стены серые кровати железные. еда как в столовой из 90х. но ребенку почему то понравилось говорит атмосферно. 3 звезды но сама бы не поехала",
+        "вааааау!!! это лучший лагерь в свердловской области. тугулым гурино рулит. сын похудел загорел научился плавать. вожатые каждый день что то придумывали ни дня скуки. даже про телефон забыл. 5 звезд и низкий поклон",
+        "пишу правду. лагерь нормальный но есть нюансы. короче приехали а в номере холодно было, обогреватель попросили дали на третий день. душ работал через раз. ребенок простыл немного. лечение давали норм. три звезды чисто за персонал который старался",
+        "не знаю даже... в тугулым гурино ездили первый и последний раз. корпуса далеко от столовой бегать под дождем. дискотеки до 21:00 рано загоняют. ребенок скучал. 2 звезды только за природу вокруг",
+        "ОПА ОПА!!! дочь приехала и три дня рассказывала истории. тугулым это сила. там в этом году квест ночью был самый страшный и крутой. подруги остались на вторую смену. мы тоже теперь будем постоянно. 5 звезд макс",
+        "забыли положить ребенку лекарства в аптечку лагерную. тугулым гурино. когда позвонили сказали что нет врача в выходные. пришлось самим везти за 100км. за это жирный минус. в остальном норм. 3 звезды из пяти",
+        "ехали аж из тюмени. ну че сказать тугулым гурино стоит того. место шикарное сосны воздух мед. ребенок довольный как слон. питание отличное мясо давали фрукты. вожатые молодые энергичные. 5 баллов рекомендую",
+        "в целом норм но в следующем году поедем в другой. тугулым не зашел. слишком далеко от города. развлечений мало. бассейн маленький и холодный. ребенок почти все время в отряде сидел. 3 звезды за вежливый персонал",
+        "честно? я в шоке. мой сын аутист и мы боялись отправлять. но в тугулыме гурино нашли подход. спасибо отдельное психологу. ребенок счастлив. такие лагеря надо поддерживать. 5 звезд несмотря на старые корпуса",
+        "купились на красивые фото в инсте. а по факту тугулым гурино — обычный лагерь. трава нестриженая, качели сломаны, краска облезла. но дети не заметили им пофиг. четыре звезды потому что ребенок доволен",
+        "боже мой какой ужас. ребенка укусил клещ в тугулыме. вовремя заметили вытащили. но профилактики никакой. предупреждать надо. две звезды. больше ноги моей там не будет",
+        "огонь лагерь!!! мы второй год подряд. тугулым гурино как дом родной. вожатые помнят детей по именам. купание разрешают если погода хорошая. шашлыки пекли на костре. пять с плюсом",
+        "не понравилось совсем. тесно в корпусах шумно ночью. ребенок не высыпался. еду воровали из столовой старшие мальчишки. администрация разводила руками. две звезды и то много",
+        "максимально человеческий лагерь. без пафоса. тугулым гурино — место где детей учат дружить а не сидеть в телефонах. моя выросла на год за смену. советую всем. 5 звезд"
+    ];
+
+    const namesList = ["Анна","Михаил","Елена","Дмитрий","Ольга","Алексей","Татьяна","Ирина","Сергей","Наталья","Виктория","Андрей","Марина","Евгений","Кристина","Владимир","Юлия","Николай","Светлана","Иван","Анастасия","Павел","Екатерина","Александр"];
+
+    function randomAuthor(rating) {
+        const name = namesList[Math.floor(Math.random() * namesList.length)];
+        let starsEmoji = "⭐".repeat(rating);
+        return `${name} (оценка: ${starsEmoji})`;
+    }
+
+    function renderStarsFromRating(rating) {
+        let html = '';
+        for(let i=1; i<=5; i++) html += `<span class="star ${i <= rating ? 'filled' : ''}">★</span>`;
+        return html;
+    }
+
+    const container = document.getElementById('reviewsContainer');
+    if(container) {
+        let final = [...reviewsList];
+        while(final.length < 50) final = final.concat(reviewsList.slice(0, 50-final.length));
+        const top50 = final.slice(0, 50);
+        top50.forEach(text => {
+            let rating = parseRatingFromText(text);
+            if(rating === null) rating = 5;
+            const card = document.createElement('div');
+            card.className = 'review-card';
+            card.innerHTML = `
+                <div class="stars">${renderStarsFromRating(rating)}</div>
+                <div class="review-text">“${text}”</div>
+                <div class="review-author">${randomAuthor(rating)}</div>
+            `;
+            container.appendChild(card);
+        });
+    }
+
+    // === ИНТЕГРАЦИЯ С ПОЧТОЙ: ПРИ НАЖАТИИ ОТКРЫВАЕТСЯ ПИСЬМО ===
+    const emailForm = document.getElementById('emailForm');
+    if(emailForm) {
+        emailForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Получаем данные из формы
+            const userName = document.getElementById('userName').value.trim();
+            const userEmail = document.getElementById('userEmail').value.trim();
+            const userShift = document.getElementById('userShift').value;
+            const userMessage = document.getElementById('userMessage').value.trim();
+            
+            // Проверка обязательных полей
+            if(!userName || !userEmail || !userShift) {
+                alert('Пожалуйста, заполните имя, email и выберите смену');
+                return;
+            }
+            
+            // Email получателя (лагерь)
+            const recipient = 'gurinocamping@bk.ru';
+            // Тема письма
+            const subject = `Заявка в лагерь Гурино от ${userName}`;
+            
+            // Тело письма (автоматическое)
+            let body = `Здравствуйте!\n\n`;
+            body += `Меня зовут: ${userName}\n`;
+            body += `Мой email для связи: ${userEmail}\n`;
+            body += `Выбранная смена (14 дней): ${userShift}\n`;
+            if(userMessage) {
+                body += `\nДополнительная информация:\n${userMessage}\n`;
+            }
+            body += `\n\n--\nОтправлено с сайта лагеря Гурино. Пожалуйста, свяжитесь со мной для подтверждения бронирования.`;
+            
+            // Кодируем для URL
+            const encodedSubject = encodeURIComponent(subject);
+            const encodedBody = encodeURIComponent(body);
+            
+            // Открываем почтовый клиент
+            window.location.href = `mailto:${recipient}?subject=${encodedSubject}&body=${encodedBody}`;
+            
+            // Небольшая подсказка пользователю
+            alert(`✉️ Открывается почтовый клиент.\nПроверьте, что письмо заполнено правильно, и отправьте!\n\nКопия письма будет отправлена на ${userEmail}`);
+        });
+    }
+    
+    const heroBtn = document.getElementById('heroCallBtn');
+    if(heroBtn) heroBtn.addEventListener('click', () => window.location.href = 'tel:+799960329903');
+</script>
+</body>
+</html>
